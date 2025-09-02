@@ -7,18 +7,19 @@ import { Ionicons } from '@expo/vector-icons';
 import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
 import React from 'react';
 import {
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
 import { useOverlay } from '../../context/OverlayContext';
 import { Colors, FontSizes, FontWeights, Spacing } from '../../utils/theme';
 
 export const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props) => {
-  const { logout } = useAuth();
+  const { logout, state } = useAuth();
   const { toggleOverlay } = useOverlay();
 
   /**
@@ -60,11 +61,15 @@ export const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props
           {/* User Profile Section */}
           <View style={styles.profileSection}>
             <View style={styles.logoContainer}>
-              <Text style={styles.logoText}>ARCIOM</Text>
+              <Image 
+                source={require('../../../assets/images/main.png')}
+                style={styles.logoImage}
+                resizeMode="contain"
+              />
             </View>
             <View style={styles.userInfo}>
               <View style={styles.userHeader}>
-                <Text style={styles.username}>liteamaze</Text>
+                <Text style={styles.username}>{state.user?.username || 'Guest'}</Text>
                 <View style={styles.statusIndicator} />
               </View>
             </View>
@@ -128,11 +133,9 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.md,
     alignItems: 'center',
   },
-  logoText: {
-    fontSize: FontSizes.lg,
-    fontWeight: FontWeights.bold,
-    color: Colors.textPrimary,
-    letterSpacing: 1,
+  logoImage: {
+    width: 120,
+    height: 36,
   },
   userInfo: {
     marginTop: Spacing.sm,
@@ -141,11 +144,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    position: 'relative',
   },
   username: {
     fontSize: FontSizes.lg,
     fontWeight: FontWeights.semibold,
     color: Colors.textPrimary,
+    flex: 1,
+    textAlign: 'center',
   },
   statusIndicator: {
     width: 12,
@@ -192,7 +198,7 @@ const styles = StyleSheet.create({
   logoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.md,
   },
