@@ -51,6 +51,7 @@ const MainDrawer: React.FC = () => {
       screenOptions={{
         headerShown: false,
         drawerType: 'slide',
+        drawerPosition: 'right',
         drawerStyle: {
           width: 280,
         },

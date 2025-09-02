@@ -6,15 +6,15 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import {
-    Alert,
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { CustomButton } from '../components/ui/CustomButton';
 import { CustomInput } from '../components/ui/CustomInput';
@@ -112,7 +112,7 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
                 resizeMode="contain"
               />
               <Text style={styles.subtitle}>
-                Sign in to continue to Arcio
+                Provide the information to log into your Arcio account.
               </Text>
 
               <View style={styles.form}>

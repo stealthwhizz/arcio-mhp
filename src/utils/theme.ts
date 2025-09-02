@@ -36,6 +36,8 @@ export const Colors = {
 export const Gradients = {
   primary: ['#1a237e', '#0d47a1'] as const,
   button: ['#f44336', '#d32f2f'] as const,
+  green: ['#4caf50', '#388e3c'] as const,
+  darkGray: ['#546e7a', '#37474f'] as const,
   card: ['rgba(255, 255, 255, 0.05)', 'rgba(255, 255, 255, 0.02)'] as const,
 };
 

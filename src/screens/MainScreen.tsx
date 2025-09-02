@@ -5,6 +5,7 @@
 
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useState } from 'react';
 import {
     Image,
@@ -16,12 +17,11 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import { CustomButton } from '../components/ui/CustomButton';
 import { FloatingOverlay } from '../components/ui/FloatingOverlay';
 import { GradientBackground } from '../components/ui/GradientBackground';
 import { WorldCard } from '../components/ui/WorldCard';
 import { DrawerParamList, World } from '../types';
-import { BorderRadius, Colors, FontSizes, FontWeights, Spacing } from '../utils/theme';
+import { BorderRadius, Colors, FontSizes, FontWeights, Gradients, Spacing } from '../utils/theme';
 
 type MainScreenNavigationProp = DrawerNavigationProp<DrawerParamList, 'Home'>;
 
@@ -123,12 +123,20 @@ export const MainScreen: React.FC<Props> = ({ navigation }) => {
           contentContainerStyle={styles.scrollContent}
         >
           {/* Host World Button */}
-          <CustomButton
-            title="HOST WORLD"
+          <TouchableOpacity
             onPress={handleHostWorld}
-            size="large"
+            activeOpacity={0.8}
             style={styles.hostButton}
-          />
+          >
+            <LinearGradient
+              colors={Gradients.green}
+              style={styles.hostButtonGradient}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+            >
+              <Text style={styles.hostButtonText}>HOST WORLD</Text>
+            </LinearGradient>
+          </TouchableOpacity>
 
           {/* Search Bar */}
           <View style={styles.searchContainer}>
@@ -144,13 +152,19 @@ export const MainScreen: React.FC<Props> = ({ navigation }) => {
 
           {/* Filter Section */}
           <View style={styles.filterSection}>
-            <CustomButton
-              title="Versions"
+            <TouchableOpacity
               onPress={handleVersionsFilter}
-              size="small"
-              variant="outline"
-              style={styles.filterButton}
-            />
+              activeOpacity={0.8}
+            >
+              <LinearGradient
+                colors={Gradients.darkGray}
+                style={styles.filterButton}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+              >
+                <Text style={styles.filterButtonText}>Versions</Text>
+              </LinearGradient>
+            </TouchableOpacity>
           </View>
 
           {/* Worlds List */}
@@ -208,6 +222,20 @@ const styles = StyleSheet.create({
   hostButton: {
     marginBottom: Spacing.xl,
   },
+  hostButtonGradient: {
+    borderRadius: BorderRadius.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: Spacing.lg,
+    paddingHorizontal: Spacing.xl,
+    minHeight: 56,
+  },
+  hostButtonText: {
+    color: Colors.textPrimary,
+    fontWeight: FontWeights.semibold,
+    fontSize: FontSizes.lg,
+    textAlign: 'center',
+  },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -233,7 +261,18 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.lg,
   },
   filterButton: {
+    borderRadius: BorderRadius.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.lg,
+    minHeight: 36,
+  },
+  filterButtonText: {
+    color: Colors.textPrimary,
+    fontWeight: FontWeights.semibold,
+    fontSize: FontSizes.sm,
+    textAlign: 'center',
   },
   worldsSection: {
     flex: 1,

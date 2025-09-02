@@ -90,13 +90,13 @@ export const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props
 
         <View style={styles.footer}>
           <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+            <Text style={styles.logoutText}>Log Out</Text>
             <Ionicons
               name="log-out-outline"
               size={20}
               color={Colors.primary}
-              style={styles.menuIcon}
+              style={styles.logoutIcon}
             />
-            <Text style={styles.logoutText}>Log Out</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.xs,
   },
   menuIcon: {
-    marginRight: Spacing.lg,
+    marginRight: Spacing.sm,
   },
   menuLabel: {
     fontSize: FontSizes.md,
@@ -192,8 +192,12 @@ const styles = StyleSheet.create({
   logoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     paddingVertical: Spacing.md,
     paddingHorizontal: Spacing.md,
+  },
+  logoutIcon: {
+    marginLeft: Spacing.sm,
   },
   logoutText: {
     fontSize: FontSizes.md,

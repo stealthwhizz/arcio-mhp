@@ -22,7 +22,12 @@ export const WorldCard: React.FC<WorldCardProps> = ({ world }) => {
       end={{ x: 1, y: 1 }}
     >
       <View style={styles.header}>
-        <Text style={styles.username}>{world.username}</Text>
+        <View style={styles.usernameContainer}>
+          <Text style={styles.username}>{world.username}</Text>
+          {world.username === 'liteamaze' && (
+            <View style={styles.userStatusDot} />
+          )}
+        </View>
         <View style={styles.statusContainer}>
           <View style={[
             styles.statusDot,
@@ -65,6 +70,17 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
     fontWeight: FontWeights.medium,
   },
+  usernameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  userStatusDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: Colors.secondary,
+    marginLeft: Spacing.xs,
+  },
   statusContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -92,7 +108,7 @@ const styles = StyleSheet.create({
   },
   version: {
     fontSize: FontSizes.sm,
-    color: Colors.textMuted,
+    color: Colors.textSecondary,
   },
   playerCount: {
     fontSize: FontSizes.sm,
